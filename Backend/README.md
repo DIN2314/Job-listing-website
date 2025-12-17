@@ -1,55 +1,33 @@
-# Job Listing Backend
+# Project Documentation for Job Listing Backend Server using NodeJS and Express Framework with MySQL Database, Auth Middleware & JWT Token Authentication System included (SMTP Email Configuration) 
 
-Node.js + Express backend for the job listing platform. Below are quick-start notes for configuring environment variables and SMTP delivery.
-
-## Setup
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Copy `.env.example` to `.env` and fill in the required values. At minimum you need:
-
-- Database connection (`DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`)
-- `JWT_SECRET`
-- Cloudinary keys if you plan to upload assets
-- SMTP credentials for transactional emails
-
-3. Start the server in development mode:
-
-```bash
-npm run dev
-```
-
-## SMTP configuration
-
-The application supports both Gmail and custom SMTP providers.
-
-| Variable | Description |
-| --- | --- |
-| `SMTP_SERVICE` | Nodemailer service identifier (defaults to `gmail`). Ignored when `SMTP_HOST` is provided. |
-| `SMTP_HOST` | Hostname of the SMTP server (e.g. `smtp.mailtrap.io`). |
-| `SMTP_PORT` | Port number (587 for STARTTLS, 465 for SSL). If omitted while using `SMTP_HOST`, it defaults to `587`. |
-| `SMTP_SECURE` | Set to `true` to force SSL/TLS (port 465). |
-| `SMTP_USER` | SMTP username/account. Falls back to `EMAIL_USER` for backward compatibility. |
-| `SMTP_PASS` | SMTP password or app password. Falls back to `EMAIL_PASS`. |
-| `SMTP_FROM` | Optional default sender address (e.g. `"Job Portal <no-reply@example.com>"`). |
-
-### Gmail specific notes
-
-- Enable 2-Step Verification on the Gmail account (required by Google).
-- Generate an App Password from [Google Account → Security → App passwords](https://myaccount.google.com/apppasswords).
-- Use the generated 16-character password as `SMTP_PASS` (or `EMAIL_PASS`).
-- Google may block sign-in attempts from unfamiliar IP addresses; review alerts in your Google account if authentication continues to fail.
-
-### Alternative providers
-
-Set `SMTP_HOST`, `SMTP_PORT`, and `SMTP_SECURE` for providers such as Mailtrap, SendGrid, or AWS SES. Leave `SMTP_SERVICE` unset in that case.
-
-## Troubleshooting
-
-- **`535-5.7.8 Username and Password not accepted`**: Authentication failed. For Gmail, the account needs an App Password. For other providers, verify the credentials and that your IP is allowed.
-- **`Email transport not configured`**: `SMTP_USER`/`SMTP_PASS` (or the legacy `EMAIL_USER`/`EMAIL_PASS`) are missing.
-- To debug locally without hitting a real inbox, consider using [Ethereal Email](https://ethereal.email/) or Mailtrap and populate the SMTP variables with their sandbox credentials.
+## Overview
+The backend server is a part of an application that manages job listings. It uses the express framework to build web applications in nodejs environment for handling requests and responses at various points within our system, while MySQL database handles all data storage operations related with jobs posted by users on this platform. The authentication middleware & JWT token based Authentication System is also included as part of it which ensures secure user's access to the application resources only authorized ones ie., admin and employers can perform certain actions like creating, updating or deleting job listings while a general public (jobseeker) cannot do such operations.
+ 
+## Features:  
+- User Registration & Login System with JWT Token Authentication system included for secure user access to the application resources only authorized ones ie., admin and employers can perform certain actions like creating, updating or deleting job listings while a general public (jobseeker) cannot do such operations. 
+    - Included SMTP Email Configuration which sends verification emails upon registration/password reset requests with an expiring token for user to verify their email address after clicking the link in these verified emails provided by our application via client side code or server-side API calls, and also allows password resets on request from users.
+    - Included a feature of Forgot Password functionality whereby admin can reset any account's forgotten (password) credentials through an email to that user with the token for verification purposes only once they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+    - Included a feature of Password Change functionality whereby admin can change any account's (password) credentials through an email to that user with the token for verification purposes only once they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Email Verification which sends emails upon registration/reset requests allowing admin (or employer) access by clicking link in these verified email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of User Profile Retrieval whereby an admin can view all registered jobseekers' profiles by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of User Profile Update whereby an admin can update any jobseeker's profile details by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of User Profile Deletion whereby an admin can delete any jobseeker's profile by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Creation whereby an employer can create new job listings with necessary details by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Update whereby an employer can update any existing job listing details by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Deletion whereby an employer can delete any existing job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Retrieval whereby an employer can view all posted job listings by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Search whereby an employer can search for specific job listings by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Sort whereby an employer can sort all posted job listings by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Filter whereby an employer can filter all posted job listings by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Rating whereby an employer can rate any job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Commentary whereby an employer can leave comments for any job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Bookmark whereby an employer can bookmark any job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Recommendation whereby an employer can recommend any job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Category selection whereby an employer can select any category for job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Location selection whereby an employer can select any location for job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Expiry selection whereby an employer can select any expiration date for job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Status selection whereby an employer can select any status for job listing by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Picture Upload whereby an employer can upload any job listing picture by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Picture Update whereby an employer can update any job listing picture by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Picture Delete whereby an employer can delete any job listing picture by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
+   - Included a feature of Job Listing Pagination whereby an employer can view all posted job listings with paginations by clicking link in their verification email provided to the user through client side code only after they have requested this action via our application or server-side API calls, and also allows password resets on request from users.
